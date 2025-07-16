@@ -1,6 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { supabase } from "../../supabaseClient";
+import AdminFormClient from "../../components/AdminFormClient";
+
+type TorneoFormValues = {
+  nombre: string;
+  juego: string;
+  fecha: string;
+  descripcion: string;
+};
 
 export default function AdminPage() {
   const [nombre, setNombre] = useState("");
@@ -11,8 +19,7 @@ export default function AdminPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async ({ nombre, juego, fecha, descripcion }: TorneoFormValues) => {
     setLoading(true);
     setError("");
     setSuccess("");
@@ -51,9 +58,9 @@ export default function AdminPage() {
         <div style={{height:2, background:'#c8d2ff', width:150, margin:'16px auto 0 auto', borderRadius:2}}></div>
       </div>
       <AdminFormClient
-        onSubmit={({ nombre, juego, fecha, descripcion }) => handleSubmit({ target: { nombre, juego, fecha, descripcion } })}
+        onSubmit={handleSubmit}
         loading={loading}
-        mensaje={mensaje}
+        mensaje={error || success}
         initial={{ nombre, juego, fecha, descripcion }}
       />
       {error && <div style={{ color: '#ff4d4f', fontWeight: 600, marginTop: 10 }}>{error}</div>}
