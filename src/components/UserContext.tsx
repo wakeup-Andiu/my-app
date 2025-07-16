@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState, ReactNode } from "react
 import { supabase } from "../supabaseClient";
 
 interface UserContextType {
-  user: any;
+  user: import("@supabase/supabase-js").User | null;
   loading: boolean;
   refreshUser: () => Promise<void>;
 }
@@ -11,7 +11,7 @@ interface UserContextType {
 const UserContext = createContext<UserContextType>({ user: null, loading: true, refreshUser: async () => {} });
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<import("@supabase/supabase-js").User | null>(null);
   const [loading, setLoading] = useState(true);
 
   const refreshUser = async () => {

@@ -46,7 +46,7 @@ export default function TorneosPage() {
         .from("inscripciones")
         .select("torneo_id")
         .eq("user_id", user.id);
-      setInscritos(inscripcionesData?.map((i: any) => i.torneo_id) || []);
+      setInscritos(inscripcionesData?.map((i: { torneo_id: string }) => i.torneo_id) || []);
       setLoading(false);
     }
     fetchTorneos();

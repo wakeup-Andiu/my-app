@@ -2,6 +2,7 @@
 import { useUser } from "./UserContext";
 import { supabase } from "../supabaseClient";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Navbar() {
   const { user, loading } = useUser();
@@ -28,7 +29,7 @@ export default function Navbar() {
     <svg width="32" height="32" style={{position: 'absolute', left: 10, top: 14}}><polygon points="16,2 18,12 28,12 19,18 22,28 16,21 10,28 13,18 4,12 14,12" fill="#ebecef"/></svg>
     <div style={{ fontSize: '1.5rem', letterSpacing: '0.05em', color: '#ebecef', textShadow: '0 0 8px #c8d2ff' }}>Torneos Gamer</div>
     <div style={{ display: 'flex', gap: '1.5rem', zIndex: 1 }}>
-      <a href="/" style={{ color: '#c8d2ff', textDecoration: 'none', fontWeight: 600, transition: 'color 0.2s' }} onMouseOver={e => (e.currentTarget.style.color = '#ebecef')} onMouseOut={e => (e.currentTarget.style.color = '#c8d2ff')}>Inicio</a>
+      <Link href="/" style={{ color: '#c8d2ff', textDecoration: 'none', fontWeight: 600, transition: 'color 0.2s' }} onMouseOver={e => (e.currentTarget.style.color = '#ebecef')} onMouseOut={e => (e.currentTarget.style.color = '#c8d2ff')}>Inicio</Link>
       {!loading && !user && <a href="/register" style={{ color: '#c8d2ff', textDecoration: 'none', fontWeight: 600, transition: 'color 0.2s' }} onMouseOver={e => (e.currentTarget.style.color = '#ebecef')} onMouseOut={e => (e.currentTarget.style.color = '#c8d2ff')}>Registro</a>}
       {!loading && !user && <a href="/login" style={{ color: '#c8d2ff', textDecoration: 'none', fontWeight: 600, transition: 'color 0.2s' }} onMouseOver={e => (e.currentTarget.style.color = '#ebecef')} onMouseOut={e => (e.currentTarget.style.color = '#c8d2ff')}>Login</a>}
       <a href="/torneos" style={{ color: '#c8d2ff', textDecoration: 'none', fontWeight: 600, transition: 'color 0.2s' }} onMouseOver={e => (e.currentTarget.style.color = '#ebecef')} onMouseOut={e => (e.currentTarget.style.color = '#c8d2ff')}>Torneos</a>

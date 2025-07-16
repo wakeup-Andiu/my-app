@@ -15,11 +15,11 @@ interface Torneo {
 
 export default function PerfilPage() {
   const { user, loading: userLoading } = useUser();
-  const [torneos, setTorneos] = useState<Torneo[]>([]);
+  // const [torneos, setTorneos] = useState<Torneo[]>([]); // unused
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [deleting, setDeleting] = useState(false);
-  const [loggingOut, setLoggingOut] = useState(false);
+  // const [loggingOut, setLoggingOut] = useState(false); // unused
   const router = useRouter();
 
   useEffect(() => {
@@ -41,11 +41,7 @@ export default function PerfilPage() {
         setLoading(false);
         return;
       }
-      setTorneos(
-        (inscripciones || [])
-          .map((i: any) => i.torneo)
-          .filter((t: Torneo | null) => t)
-      );
+      
       setLoading(false);
     }
     if (!userLoading) fetchData();
@@ -66,9 +62,9 @@ export default function PerfilPage() {
   };
 
   const handleLogout = async () => {
-    setLoggingOut(true);
+    
     await supabase.auth.signOut();
-    setLoggingOut(false);
+    
     router.push("/login");
   };
 
@@ -86,8 +82,8 @@ export default function PerfilPage() {
       <div style={{ background: '#2c3042', padding: 40, borderRadius: 28, boxShadow: '0 2px 16px #1b1c23', width: '100%', maxWidth: 420, margin: '0 auto 32px auto', position: 'relative', border: '2px solid #c8d2ff', color: '#c8d2ff', fontFamily: 'Fredoka, sans-serif' }}>
         {/* Estrella decorativa */}
         <svg width="36" height="36" style={{ position: 'absolute', left: 12, top: 12 }}><polygon points="18,3 20,13 30,13 21,19 24,29 18,23 12,29 15,19 6,13 16,13" fill="#ebecef"/></svg>
-        <p><span style={{ fontWeight: 700, color: '#c8d2ff' }}>Email:</span> <span style={{ color: '#ebecef' }}>{user.email}</span></p>
-        <p><span style={{ fontWeight: 700, color: '#c8d2ff' }}>ID:</span> <span style={{ color: '#ebecef' }}>{user.id}</span></p>
+        <p><span style={{ fontWeight: 700, color: '#c8d2ff' }}>Email:</span> <span style={{ color: '#ebecef' }}>{user?.email}</span></p>
+        <p><span style={{ fontWeight: 700, color: '#c8d2ff' }}>ID:</span> <span style={{ color: '#ebecef' }}>{user?.id}</span></p>
         <button
           style={{
             marginTop: 24,
