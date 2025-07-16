@@ -1,4 +1,5 @@
 import "./globals.css";
+import type { Metadata } from "next";
 import { Fredoka } from "next/font/google";
 import Navbar from "../components/Navbar";
 import { UserProvider } from "../components/UserContext";

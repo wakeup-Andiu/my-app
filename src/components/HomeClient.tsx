@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-const buttonBase = {
+const buttonBase: React.CSSProperties = {
   padding: "16px 32px",
   borderRadius: 16,
   fontWeight: 700,

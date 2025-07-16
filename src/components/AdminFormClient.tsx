@@ -1,7 +1,14 @@
 "use client";
 import React, { useState } from "react";
 
-export default function AdminFormClient({ onSubmit, loading, mensaje, initial = { nombre: '', juego: '', fecha: '', descripcion: '' } }) {
+interface AdminFormClientProps {
+  onSubmit: (data: { nombre: string; juego: string; fecha: string; descripcion: string }) => void;
+  loading: boolean;
+  mensaje?: string;
+  initial?: { nombre: string; juego: string; fecha: string; descripcion: string };
+}
+
+export default function AdminFormClient({ onSubmit, loading, mensaje, initial = { nombre: '', juego: '', fecha: '', descripcion: '' } }: AdminFormClientProps) {
   const [nombre, setNombre] = useState(initial.nombre);
   const [juego, setJuego] = useState(initial.juego);
   const [fecha, setFecha] = useState(initial.fecha);
